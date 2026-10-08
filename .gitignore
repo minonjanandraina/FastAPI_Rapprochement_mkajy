@@ -1,0 +1,8 @@
+text
+# Excel files
+*.xlsx
+*.xls
+*.xlsm
+
+# Excel temporary lock files
+~$*.xls*wq
