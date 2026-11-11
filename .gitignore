@@ -6,3 +6,7 @@ text
 
 # Excel temporary lock files
 ~$*.xls*wq
+
+.csv
+.zip
+.rar
