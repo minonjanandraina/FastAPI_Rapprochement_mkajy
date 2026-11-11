@@ -1,4 +1,7 @@
-from fastapi import FastAPI
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from mainTango import ETL_TANGO
 from mainPICO import ETL_PICO
@@ -11,12 +14,32 @@ from mainAMS import ETL_AMS
 from Check_transaction_before_reconciliation import check_unreconciled_transaction
 from ETL import upload_reconciliation
 app = FastAPI()
+INPUT_DIRECTORY = Path("./input/TANGO").resolve()
 # ---------------------------
 # Pydantic model
 # ---------------------------
 
 class DateRequest(BaseModel):
     requestDate: date  # expects YYYY-MM-DD
+
+
+@app.get("/input-file", response_class=FileResponse)
+def get_input_file(relative_path: str):
+    requested_path = Path(relative_path)
+    if requested_path.is_absolute():
+        raise HTTPException(status_code=400, detail="The file path must be relative to input.")
+
+    file_path = (INPUT_DIRECTORY / requested_path).resolve()
+    try:
+        file_path.relative_to(INPUT_DIRECTORY)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="The file path must stay inside input.")
+
+    if not file_path.is_file():
+        raise HTTPException(status_code=404, detail="File not found in input.")
+
+    return FileResponse(path=file_path, filename=file_path.name)
+
 
 @app.post("/transformTangoTransaction")
 def transformTangoTransaction(request: DateRequest):
