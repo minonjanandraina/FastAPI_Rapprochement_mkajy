@@ -1217,3 +1217,277 @@ ORDER BY
 [INFO] Vérification des doublons pour : 2026-10-07
 [INFO] 0 doublon(s) trouvé(s).
 [OK] Email envoyé – 2026-10-07
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-08
+[INFO] 1 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-08
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-09
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-09
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-10
+[ERREUR] Connexion / requête SQL : Execution failed on sql '
+SELECT
+    l.requestID,
+    COUNT(mc.mcTransactionID)  AS nb,
+    SUM(mc.amountCRY)          AS amount
+FROM [bagsPAMF_CBS_MC].[dbo].apiLog          l
+JOIN cbs.dbo.mcTransaction                   mc  ON mc.RequestID = l.apiLogId
+WHERE
+    mc.Status        = 3
+    AND l.apiServiceId  IN (700, 701, 302)
+    AND CAST(mc.PostingDate AS DATE) = CAST(? AS DATE)   -- paramètre J-1
+GROUP BY
+    l.requestID
+HAVING
+    COUNT(mc.mcTransactionID) > 1            -- doublons uniquement
+ORDER BY
+    nb DESC, amount DESC;
+': ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+Traceback (most recent call last):
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2018, in execute
+    cur.execute(*args, **kwargs)
+pyodbc.OperationalError: ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py", line 173, in <module>
+    main()
+  File "/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py", line 162, in main
+    df  = pd.read_sql(QUERY, con, params=[yesterday])
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 564, in read_sql
+    return pandas_sql.read_query(
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2078, in read_query
+    cursor = self.execute(*args)
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2030, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+SELECT
+    l.requestID,
+    COUNT(mc.mcTransactionID)  AS nb,
+    SUM(mc.amountCRY)          AS amount
+FROM [bagsPAMF_CBS_MC].[dbo].apiLog          l
+JOIN cbs.dbo.mcTransaction                   mc  ON mc.RequestID = l.apiLogId
+WHERE
+    mc.Status        = 3
+    AND l.apiServiceId  IN (700, 701, 302)
+    AND CAST(mc.PostingDate AS DATE) = CAST(? AS DATE)   -- paramètre J-1
+GROUP BY
+    l.requestID
+HAVING
+    COUNT(mc.mcTransactionID) > 1            -- doublons uniquement
+ORDER BY
+    nb DESC, amount DESC;
+': ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-11
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-11
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-12
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-12
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-13
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-13
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-14
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-14
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-15
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-15
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-16
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-16
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-17
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-17
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-18
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-18
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-19
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-19
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-20
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-20
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-21
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-21
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-22
+[ERREUR] Connexion / requête SQL : Execution failed on sql '
+SELECT
+    l.requestID,
+    COUNT(mc.mcTransactionID)  AS nb,
+    SUM(mc.amountCRY)          AS amount
+FROM [bagsPAMF_CBS_MC].[dbo].apiLog          l
+JOIN cbs.dbo.mcTransaction                   mc  ON mc.RequestID = l.apiLogId
+WHERE
+    mc.Status        = 3
+    AND l.apiServiceId  IN (700, 701, 302)
+    AND CAST(mc.PostingDate AS DATE) = CAST(? AS DATE)   -- paramètre J-1
+GROUP BY
+    l.requestID
+HAVING
+    COUNT(mc.mcTransactionID) > 1            -- doublons uniquement
+ORDER BY
+    nb DESC, amount DESC;
+': ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+Traceback (most recent call last):
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2018, in execute
+    cur.execute(*args, **kwargs)
+pyodbc.OperationalError: ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py", line 173, in <module>
+    main()
+  File "/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py", line 162, in main
+    df  = pd.read_sql(QUERY, con, params=[yesterday])
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 564, in read_sql
+    return pandas_sql.read_query(
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2078, in read_query
+    cursor = self.execute(*args)
+  File "/home/dfs/.local/lib/python3.10/site-packages/pandas/io/sql.py", line 2030, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+SELECT
+    l.requestID,
+    COUNT(mc.mcTransactionID)  AS nb,
+    SUM(mc.amountCRY)          AS amount
+FROM [bagsPAMF_CBS_MC].[dbo].apiLog          l
+JOIN cbs.dbo.mcTransaction                   mc  ON mc.RequestID = l.apiLogId
+WHERE
+    mc.Status        = 3
+    AND l.apiServiceId  IN (700, 701, 302)
+    AND CAST(mc.PostingDate AS DATE) = CAST(? AS DATE)   -- paramètre J-1
+GROUP BY
+    l.requestID
+HAVING
+    COUNT(mc.mcTransactionID) > 1            -- doublons uniquement
+ORDER BY
+    nb DESC, amount DESC;
+': ('08004', '[08004] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Le principal de serveur "Minonja" ne peut pas accéder à la base de données "CBS" dans le contexte de sécurité actuel. (916) (SQLExecDirectW)')
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-23
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-23
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-24
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-24
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-25
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-25
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-26
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-26
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-27
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-27
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-28
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-28
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-29
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-29
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-30
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-30
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-10-31
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-10-31
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-01
+[INFO] 2 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-01
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-02
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-02
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-03
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-03
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-04
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-04
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-05
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-05
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-06
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-06
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-07
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-07
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-08
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-08
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-09
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-09
+/home/dfs/minonja/PAMF/GOD/repprochement_m_kajy/RECONCILIATION_DAILY/doublon.py:162: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df  = pd.read_sql(QUERY, con, params=[yesterday])
+[INFO] Vérification des doublons pour : 2026-11-10
+[INFO] 0 doublon(s) trouvé(s).
+[OK] Email envoyé – 2026-11-10
